@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 int main() {
-    int num1, num2, resultado;
+    float num1, num2, resultado;
     int operador; 
     char resposta;
 
@@ -31,37 +31,43 @@ int main() {
 
     //Operações para as opções 1 a 4
     printf("Digite o primeiro número: ");
-    scanf("%d", &num1);
+    scanf("%f", &num1);
     printf("Digite o segundo número: ");
-    scanf("%d", &num2);
+    scanf("%f", &num2);
 
     switch (operador) {
         case 1:
             resultado = num1 + num2;
-            printf("Resultado: %d + %d = %d\n", num1, num2, resultado);
+            printf("Resultado: %.2f + %.2f = %.2f\n", num1, num2, resultado);
             break;
         case 2:
             resultado = num1 - num2;
-            printf("Resultado: %d - %d = %d\n", num1, num2, resultado);
+            printf("Resultado: %.2f - %.2f = %.2f\n", num1, num2, resultado);
             break;
         case 3:
             resultado = num1 * num2;
-            printf("Resultado: %d * %d = %d\n", num1, num2, resultado);
+            printf("Resultado: %.2f * %.2f = %.2f\n", num1, num2, resultado);
             break;
         case 4:
             if (num2 == 0) {
                 printf("Erro: Divisão por zero não é permitida.\n");
             } else {
                 resultado = num1 / num2;
-                printf("Resultado: %d / %d = %d\n", num1, num2, resultado);
+                printf("Resultado: %.2f / %.2f = %.2f\n", num1, num2, resultado);
             }
             break;
     }
 
-        printf("Deseja realizar outra operação? (s/n): ");
-        scanf(" %c", &resposta);
-    } 
-    while (resposta == 's');
+       do {
+            printf("Deseja realizar outra operação? (s/n): ");
+            scanf(" %c", &resposta);
+            
+            if (resposta != 's' && resposta != 'S' && resposta != 'n' && resposta != 'N') {
+                printf("Erro: Resposta inválida. Digite 's' para sim ou 'n' para não.\n");
+            }
+        } while (resposta != 's' && resposta != 'S' && resposta != 'n' && resposta != 'N');
+
+    } while (resposta == 's' || resposta == 'S'); // Aceita 's' ou 'S'
 
     if (operador != 5) {
         printf("Obrigado por usar a calculadora! Até a próxima.\n");
