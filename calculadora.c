@@ -5,10 +5,12 @@ int main() {
     float num1, num2, resultado;
     int operador; 
     char resposta;
+    int lido;
+    char prox_char;
 
-    // Laço principal que mantém a calculadora rodando
+
     do {
-        // Laço interno focado apenas no menu e sua validação
+        // Validação do menu principal
         do {
             printf("\n===============================\n");
             printf("   Calculadora Simples\n");
@@ -21,10 +23,17 @@ int main() {
             printf("5. Sair\n");
             printf("Opção: ");
             
-            // Lê e valida a entrada de uma só vez
-            if (scanf("%d", &operador) != 1) {
-                while (getchar() != '\n'); 
-                operador = 0; // Força opção inválida para repetir o menu 
+            // Leitura do operador com validação
+            lido = scanf("%d", &operador);
+            prox_char = getchar();
+            
+            
+            if (lido != 1 || prox_char != '\n') {
+                
+                if (prox_char != '\n') {
+                    while (getchar() != '\n'); 
+                }
+                operador = 0; // Repete o menu se a entrada for inválida
             }
             
             if (operador < 1 || operador > 5) {
